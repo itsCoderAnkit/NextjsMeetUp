@@ -2,7 +2,8 @@
 import { MongoClient } from 'mongodb'
 import Layout from '@/components/layout/Layout'
 import MeetupList from '@/components/meetups/MeetupList'
-import React, { useEffect,useState } from 'react'
+import React, { Fragment, useEffect,useState } from 'react'
+import Head from 'next/head'
 
 
 const DUMMY_MEETUPS = [
@@ -29,8 +30,20 @@ const [loadedMeetups,setLoadedMeetups] =  useState([])
     setLoadedMeetups(DUMMY_MEETUPS)
   },[])
   return (
+    <Fragment>
+      <Head>
+        <title>
+          React Meetup
+        </title>
+        <meta>
+        name='description'
+        content='A Meetup App'
+        </meta>
+      </Head>
+      <MeetupList meetups={loadedMeetups}/>
+    </Fragment>
   
-   <MeetupList meetups={loadedMeetups}/>
+   
   
   )
 }
